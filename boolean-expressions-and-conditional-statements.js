@@ -50,3 +50,42 @@ Add Customization and expand the game:
   - Use nested conditionals and logical operators to create complex outcomes.
 
 */
+//HOME ASSIGNMENT CODE
+const readline = require('readline-sync');
+
+const hasTorch = true;
+const hasMap = false;
+const hasSword = true;
+const hasCompass = true;
+const hasGold = false;
+const trustHorse = true;
+
+console.log("You wake up beside a misty river. Two paths lie ahead: one toward a castle, one toward a bridge guarded by an ogre.");
+const choice = readline.question("Do you go to the 'castle' or the 'bridge'? ");
+
+if (choice === "castle") {
+  if ((hasMap || hasCompass) && hasTorch) {
+    console.log("You navigate through foggy terrain and arrive at the castle gates.");
+    const rideHorse = readline.question("A talking horse offers you a ride. Do you accept? (yes/no) ");
+    if (rideHorse === "yes" && trustHorse) {
+      console.log("The horse gallops through secret trails and leads you to treasure!");
+    } else {
+      console.log("You walk on foot and reach the castle tired, but alive.");
+    }
+  } else {
+    console.log("Without proper tools, you lose your way in the fog.");
+  }
+} else if (choice === "bridge") {
+  if (hasSword && (hasGold || !hasGold)) {
+    console.log("An ogre stops you and demands gold.");
+    if (hasGold==="yes") {
+      console.log("You offer him gold. He lets you pass.");
+    } else {
+      console.log("You raise your sword and fend off the ogre!");
+    }
+  } else {
+    console.log("You have no weapon. The ogre growls and blocks your path.");
+  }
+} else {
+  console.log("Confused by the terrain, you wander into the woods and disappear into legend...");
+}
