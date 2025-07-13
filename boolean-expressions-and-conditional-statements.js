@@ -53,12 +53,16 @@ Add Customization and expand the game:
 //HOME ASSIGNMENT CODE
 const readline = require('readline-sync');
 
+// Inventory flags
 const hasTorch = true;
 const hasMap = false;
 const hasSword = true;
 const hasCompass = true;
 const hasGold = false;
 const trustHorse = true;
+const trustOgre = true;
+
+let ogreResponse; // Declare this early so it's accessible later
 
 console.log("You wake up beside a misty river. Two paths lie ahead: one toward a castle, one toward a bridge guarded by an ogre.");
 const choice = readline.question("Do you go to the 'castle' or the 'bridge'? ");
@@ -73,18 +77,15 @@ if (choice === "castle") {
       console.log("You walk on foot and reach the castle tired, but alive.");
     }
   } else {
-    console.log("Without proper tools, you lose your way in the fog.");
+    console.log("You wander through the mist for hours before stumbling into a peaceful village.");
   }
 } else if (choice === "bridge") {
-  if (hasSword && (hasGold || !hasGold)) {
-    console.log("An ogre stops you and demands gold.");
-    if (hasGold==="yes") {
-      console.log("You offer him gold. He lets you pass.");
-    } else {
-      console.log("You raise your sword and fend off the ogre!");
-    }
+  ogreResponse = readline.question("The ogre demands gold. Do you try to distract him with a riddle? (yes/no) ");
+
+  if (ogreResponse === "yes" && trustOgre) {
+    console.log("You distract him with a riddle so clever, he forgets why he stopped you.");
   } else {
-    console.log("You have no weapon. The ogre growls and blocks your path.");
+    console.log("You step back cautiously, deciding it's best not to engage.");
   }
 } else {
   console.log("Confused by the terrain, you wander into the woods and disappear into legend...");
